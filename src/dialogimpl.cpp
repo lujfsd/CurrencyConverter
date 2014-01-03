@@ -8,11 +8,11 @@ DialogImpl::DialogImpl( QWidget * parent, Qt::WFlags f)
 
 void DialogImpl::displayerror(const QString & error)
 {
-    QMessageBox messagebox;
-    lineEdit_result->clear();
-    messagebox.setWindowTitle("Error!");
-    messagebox.setText(error);
-    messagebox.exec();
+  QMessageBox messagebox;
+  lineEdit_result->clear();
+  messagebox.setWindowTitle("Error!");
+  messagebox.setText(error);
+  messagebox.exec();
 }
 
 void DialogImpl::replyFinished(QNetworkReply *replay)
@@ -32,7 +32,7 @@ void DialogImpl::replyFinished(QNetworkReply *replay)
     displayerror("Get Rate ERROR!\t");
   }
 }
-void DialogImpl::getCurrencyID(QString *ID,const QString comboxtext)
+void DialogImpl::get_comBox_Currenttext(QString *ID,const QString comboxtext)
 {
   QString x =comboxtext.right(4);
   x.remove(QChar(')'));
@@ -44,8 +44,8 @@ void DialogImpl::convert()
 {
   QString path,fromcurrency,tocurrency;
 
-  getCurrencyID(&fromcurrency,comboBox_src->currentText());
-  getCurrencyID(&tocurrency,comboBox_dst->currentText());
+  get_comBox_Currenttext(&fromcurrency,comboBox_src->currentText());
+  get_comBox_Currenttext(&tocurrency,comboBox_dst->currentText());
 
   if(fromcurrency == tocurrency)
   {

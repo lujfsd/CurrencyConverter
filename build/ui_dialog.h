@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'dialog.ui'
 **
-** Created: Fri Jan 3 14:07:39 2014
+** Created: Fri Jan 3 14:44:08 2014
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -293,7 +293,6 @@ public:
         comboBox_dst->clear();
         comboBox_dst->insertItems(0, QStringList()
          << QApplication::translate("Dialog", "\344\272\272\346\260\221\345\270\201(CNY)", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("Dialog", "buxing(ZWS)", 0, QApplication::UnicodeUTF8)
          << QApplication::translate("Dialog", "\346\270\257\345\270\201(HKD)", 0, QApplication::UnicodeUTF8)
          << QApplication::translate("Dialog", "\345\217\260\345\270\201(TWD)", 0, QApplication::UnicodeUTF8)
          << QApplication::translate("Dialog", "\346\276\263\351\227\250\345\205\203(MOP)", 0, QApplication::UnicodeUTF8)
