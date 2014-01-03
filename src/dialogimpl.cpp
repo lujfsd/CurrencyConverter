@@ -1,23 +1,36 @@
 #include "dialogimpl.h"
-//
-DialogImpl::DialogImpl( QWidget * parent, Qt::WFlags f) 
+DialogImpl::DialogImpl( QWidget * parent, Qt::WFlags f)
   : QDialog(parent, f)
 {
   setupUi(this);
   QObject::connect(&manager,SIGNAL(finished(QNetworkReply *)),this,SLOT(replyFinished(QNetworkReply*)));
 }
-//
+
+void DialogImpl::displayerror(const QString & error)
+{
+    QMessageBox messagebox;
+    lineEdit_result->clear();
+    messagebox.setWindowTitle("Error!");
+    messagebox.setText(error);
+    messagebox.exec();
+}
 
 void DialogImpl::replyFinished(QNetworkReply *replay)
 {
   QDomDocument doc;
+
   if(!doc.setContent(replay->readAll()))
-    lineEdit_result->setText("Error!");
+  {
+    displayerror("Get URL ERROR!\t");
+    return;
+  }
   QDomElement docElem = doc.documentElement();
   if(docElem.tagName() == "double")
     lineEdit_result->setText(docElem.text());
   else
-    lineEdit_result->setText("Error!");
+  {
+    displayerror("Get Rate ERROR!\t");
+  }
 }
 void DialogImpl::getCurrencyID(QString *ID,const QString comboxtext)
 {
@@ -35,10 +48,10 @@ void DialogImpl::convert()
   getCurrencyID(&tocurrency,comboBox_dst->currentText());
 
   if(fromcurrency == tocurrency)
-    {
-      lineEdit_result->setText("1");
-      return;
-    }
+  {
+    lineEdit_result->setText("1");
+    return;
+  }
 
   path.clear();
   path.append("http://www.webservicex.net/CurrencyConvertor.asmx/ConversionRate?");

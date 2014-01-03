@@ -743,6 +743,11 @@
        </item>
        <item>
         <property name="text">
+         <string>buxing(ZWS)</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
          <string>港币(HKD)</string>
         </property>
        </item>
