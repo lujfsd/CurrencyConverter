@@ -3,7 +3,6 @@ QT = gui core
 QT += network
 QT += xml
 CONFIG += qt debug warn_on console
-CONFIG += static
 DESTDIR = bin
 OBJECTS_DIR = build
 MOC_DIR = build

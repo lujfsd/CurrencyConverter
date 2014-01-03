@@ -19,28 +19,26 @@ void DialogImpl::replyFinished(QNetworkReply *replay)
   else
     lineEdit_result->setText("Error!");
 }
-void DialogImpl::getCurrencyID(QString *ID,int comboxIndex)
+void DialogImpl::getCurrencyID(QString *ID,const QString comboxtext)
 {
+  QString x =comboxtext.right(4);
+  x.remove(QChar(')'));
   ID->clear();
-  switch(comboxIndex)
-    {
-    case 0:ID->append("CNY");break;
-    case 1:ID->append("HKD");break;
-    case 2:ID->append("TWD");break;
-    case 3:ID->append("USD");break;
-    }
+  ID->append(x);
 }
 
 void DialogImpl::convert()
 {
   QString path,fromcurrency,tocurrency;
-  int combox_src_Index,combox_dst_Index;
 
-  combox_src_Index = comboBox_src->currentIndex();
-  combox_dst_Index = comboBox_dst->currentIndex();
+  getCurrencyID(&fromcurrency,comboBox_src->currentText());
+  getCurrencyID(&tocurrency,comboBox_dst->currentText());
 
-  getCurrencyID(&fromcurrency,combox_src_Index);
-  getCurrencyID(&tocurrency,combox_dst_Index);
+  if(fromcurrency == tocurrency)
+    {
+      lineEdit_result->setText("1");
+      return;
+    }
 
   path.clear();
   path.append("http://www.webservicex.net/CurrencyConvertor.asmx/ConversionRate?");
