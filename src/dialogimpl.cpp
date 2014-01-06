@@ -8,11 +8,8 @@ DialogImpl::DialogImpl( QWidget * parent, Qt::WFlags f)
 
 void DialogImpl::displayerror(const QString & error)
 {
-  QMessageBox messagebox;
   lineEdit_result->clear();
-  messagebox.setWindowTitle("Error!");
-  messagebox.setText(error);
-  messagebox.exec();
+  QMessageBox::information(this,"Error",error);
 }
 
 void DialogImpl::replyFinished(QNetworkReply *replay)
